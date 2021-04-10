@@ -6,15 +6,12 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 // import type {Node} from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
+  Button,
   View,
 } from 'react-native';
 
@@ -28,19 +25,20 @@ import {
 
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  const [name, setName] = useState("shaun")
+  const [person, setPerson] = useState({ name: "mario", age: 40 })
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  const clickHandler = () => {
+    setName("chun-li");
+  }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>
-        <Text style={styles.boldText}>
-          Hello world!
-        </Text>
-      </Text>
+      <Text>My name is {name}</Text>
+      <Text>His name is {person.name} and his age is {person.age}</Text>
+      <View style={styles.buttonContainer}>
+        <Button onPress={clickHandler} title="update state"/>
+      </View>
     </View>
   );
 };
@@ -52,12 +50,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
-  header: {
-    backgroundColor: "pink",
-    padding: 20,
-  },
-  boldText: {
-    fontWeight: "bold",
+  buttonContainer: {
+    marginTop: 20
   }
 })
 
