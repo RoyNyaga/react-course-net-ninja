@@ -13,6 +13,7 @@ import {
   Text,
   Button,
   View,
+  TextInput
 } from 'react-native';
 
 import {
@@ -26,7 +27,7 @@ import {
 
 const App = () => {
   const [name, setName] = useState("shaun")
-  const [person, setPerson] = useState({ name: "mario", age: 40 })
+  const [age, setAge] = useState("30")
 
   const clickHandler = () => {
     setName("chun-li");
@@ -34,11 +35,23 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <Text>My name is {name}</Text>
-      <Text>His name is {person.name} and his age is {person.age}</Text>
-      <View style={styles.buttonContainer}>
-        <Button onPress={clickHandler} title="update state"/>
-      </View>
+      <Text>Enter name:</Text>
+      <TextInput 
+      multiline
+      style={styles.input}
+      placeholder="e.g Jogn Doe"
+      onChangeText={(val) => {setName(val)}}/>
+
+      <Text>name: {name}, age: {age}</Text>
+
+      <Text>Enter age:</Text>
+      <TextInput 
+      keyboardType="numeric"
+      style={styles.input}
+      placeholder="e.g Jogn Doe"
+      onChangeText={(val) => {setAge(val)}}/>
+
+      <Text>name: {name}, age: {age}</Text>
     </View>
   );
 };
@@ -52,6 +65,13 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 20
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "#777",
+    padding: 8,
+    margin: 8,
+    width: 200,
   }
 })
 
