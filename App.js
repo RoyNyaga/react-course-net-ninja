@@ -16,6 +16,7 @@ import {
   TextInput,
   ScrollView,
   FlatList,
+  TouchableOpacity,
 } from 'react-native';
 
 import {
@@ -42,6 +43,13 @@ const App = () => {
 
   ])
 
+  const pressHandler = (id) => {
+    console.log(id)
+    setPeople((prevPeople) => {
+      return prevPeople.filter(person => person.id != id)
+    })
+  }
+
   return (
     <View style={styles.container}>
       <FlatList 
@@ -49,7 +57,9 @@ const App = () => {
       data={people}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) =>(
-        <Text style={styles.item}>{item.name}</Text>
+        <TouchableOpacity onPress={() => pressHandler(item.id)}>
+          <Text style={styles.item}>{item.name}</Text>
+        </TouchableOpacity>
       )}/>
     </View>
   );
