@@ -14,6 +14,8 @@ import {
   View,
   FlatList,
   Alert,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import AddTodo from './components/addTodo';
 import Header from './components/header';
@@ -49,7 +51,10 @@ const App = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <TouchableWithoutFeedback onPress={() => {
+      Keyboard.dismiss()
+    }}>
+      <View style={styles.container}>
       <Header/>
       <View style={styles.content}>
         <AddTodo submitHandler={submitHandler}/>
@@ -62,6 +67,8 @@ const App = () => {
         </View>
       </View>
     </View>
+    </TouchableWithoutFeedback>
+    
   );
 };
 
